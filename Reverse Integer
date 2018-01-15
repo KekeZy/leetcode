@@ -1,0 +1,15 @@
+问题描述：Given a 32-bit signed integer, reverse digits of an integer.
+
+class Solution {
+    public int reverse(int x) {
+        long res=0;  //注意这里的res类型
+        while(x!=0){
+            res = res*10+ x%10;
+            x = x/10;
+            if(res!=(int)res){   //判断超出范围的情况
+                return 0;
+            }
+        }
+        return (int)res;
+    }
+}
