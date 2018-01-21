@@ -1,0 +1,24 @@
+问题描述：Return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
+
+example1：
+Input: haystack = "hello", needle = "ll"
+Output: 2
+
+example2：
+Input: haystack = "aaaaa", needle = "bba"
+Output: -1
+
+class Solution {
+    public int strStr(String haystack, String needle) {
+        int l1 = haystack.length();
+        int l2 = needle.length();
+        if(l1<l2) return -1;   //判空！！！
+        if(l2==0) return 0;
+        for(int i=0;i<=l1-l2;i++){  //小于等于号，
+            if(haystack.substring(i,i+l2).equals(needle)){   //字符串相等用equals()，不能用==
+                return i;
+            }
+        }
+        return -1;
+    }
+}
