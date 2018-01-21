@@ -1,0 +1,16 @@
+问题描述：
+Find the contiguous subarray within an array (containing at least one number) which has the largest sum.
+For example, given the array [-2,1,-3,4,-1,2,1,-5,4],
+the contiguous subarray [4,-1,2,1] has the largest sum = 6.
+
+求sum最大的连续子数组，初始化为第一个数，遍历过程中每加后面一个数，作比较，如果结果比第二个数小，遍历数组取最大值，结果取当前值和遍历数组的值x
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int maxsum=nums[0],sub=nums[0];
+        for(int i=1;i<nums.length;i++){
+            sub = Math.max(sub+nums[i],nums[i]);  //如果当前sum是负数，扔掉取后面值作为新的值。
+            maxsum = Math.max(maxsum,sub);             //
+        }
+        return maxsum;
+    }
+}
