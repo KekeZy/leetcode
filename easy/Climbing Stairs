@@ -1,0 +1,21 @@
+问题描述：
+You are climbing a stair case. It takes n steps to reach to the top.
+Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+
+登n阶楼梯，每次只能上一层或者两层，共有多少种方法？
+1层有1种方法，2层有2种，登第三层时，可以从前一层上去或者从前两层直接上去。所以是个斐波那契数列问题。
+
+class Solution {
+    public int climbStairs(int n) {
+        if(n==0||n==1||n==2){
+            return n;
+        }
+        int[] sum = new int[n];
+        sum[0] = 1;   //这里因为角标从0开始，所以最后是返回n-1
+        sum[1] = 2;
+        for(int i=2;i<n;i++){
+            sum[i] = sum[i-1]+sum[i-2];
+        }
+        return sum[n-1];
+    }
+}
