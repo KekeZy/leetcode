@@ -1,0 +1,38 @@
+问题描述： 判断一个二叉树是否对称
+
+/**  树结构定义
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public boolean isSymmetric(TreeNode root) {   //根节点判断
+        if(root==null){
+            return true;
+        }else{
+            return isSubSymmetric(root.left,root.right);  
+        }        
+    }
+    private boolean isSubSymmetric(TreeNode left, TreeNode right){  //判断左右子树
+        if(left==null||right==null){  //判断左右子树是否为null
+            return left==right;       //都为null,返回true,只有一个为null,返回false
+        }
+        if(left.val!=right.val){
+            return false;
+        }else {
+            return isSubSymmetric(left.left,right.right)&&isSubSymmetric(left.right,right.left);  //继续迭代
+        }
+    }
+}
+
+
+
+
+
+
+
+
