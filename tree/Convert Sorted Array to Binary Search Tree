@@ -1,0 +1,32 @@
+问题描述：Given an array where elements are sorted in ascending order, convert it to a height balanced BST.
+example：
+Given the sorted array: [-10,-3,0,5,9],
+One possible answer is: [0,-3,9,-10,null,5], which represents the following height balanced BST:
+
+      0
+     / \
+   -3   9
+   /   /
+ -10  5
+ 
+ 树结构的题经常使用递归的方法解决
+ class Solution {
+    public TreeNode sortedArrayToBST(int[] nums) {
+          if(nums.length==0){
+              return null;  
+          }
+          TreeNode head = SubTree(nums,0,nums.length-1);
+          return head;
+    }
+    private TreeNode SubTree(int[] nums,int low,int high){
+          if(low>high){  //递归退出条件
+              return null;
+          }
+          int mid = (low+high)/2;
+          TreeNode node = new TreeNode(nums[mid]);
+          node.left = SubTree(nums,low,mid-1);
+          node.right = SubTree(nums,mid+1,high);
+          return node;
+    }
+  
+ }
