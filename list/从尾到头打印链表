@@ -1,0 +1,20 @@
+输入一个链表，从尾到头打印链表每个节点的值。
+
+从尾到头，想到栈的先进后出，能够倒转链表。
+
+import java.util.ArrayList;
+import java.util.Stack;
+public class Solution {
+    public ArrayList<Integer> printListFromTailToHead(ListNode listNode) {
+        ArrayList<Integer> list = new ArrayList<>();
+        Stack<Integer> stack = new Stack<>();
+        while(listNode!=null){
+            stack.push(listNode.val);
+            listNode = listNode.next;
+        }
+        while(!stack.empty()){ //判断栈空的方法 s.empty()
+            list.add(stack.pop());  //list添加元素的方法
+        }
+        return list;
+    }
+}
