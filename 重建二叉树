@@ -1,0 +1,24 @@
+输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。
+例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。
+
+树结构想到递归的思路。
+public class Solution {
+    public TreeNode reConstructBinaryTree(int [] pre,int [] in) {
+        TreeNode root = help(pre,0,pre.length-1,in,0,in.length-1); //数组结束和开始的位置，length-1
+        return root;
+    }
+    private TreeNode help(int [] pre,int prestar,int preend,int [] in,int instar,int inend){   //递归过程中要截取遍历数组，需要开始和结束位置
+        if(prestar>preend||instar>inend){    //结束条件          
+            return null;
+        }
+        TreeNode root = new TreeNode(pre[prestar]);
+        for(int i=instar;i<=inend;i++){
+            if(in[i]==pre[prestar]){
+                root.left = help(pre,prestar+1,prestar+i-instar,in,instar,i-1);  //开始位置和结束位置计算
+                root.right = help(pre,prestar+i-instar+1,preend,in,i+1,inend);
+                break; //优化的地方
+            }
+        }
+        return root;
+    }
+}
