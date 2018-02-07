@@ -1,0 +1,25 @@
+用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型
+
+s1当作存储队列
+入队就是s1入栈。
+出队时，考虑s2是否为空，若空，s1中全部元素出栈并进入s2中，相当于元素反转，然后s2出栈。
+                      不为空，说明此次出队元素不是第一个元素，此时s2中元素已经是s1中元素的反转，直接出栈。
+import java.util.Stack;
+public class Solution {
+    Stack<Integer> stack1 = new Stack<Integer>();
+    Stack<Integer> stack2 = new Stack<Integer>();
+    
+    public void push(int node) {
+        stack1.push(node);
+    }
+    
+ public int pop() {
+        //没有考虑两个栈都为空的情况，都为空时应该抛异常。
+        if(stack2.empty()){  // !!!栈的判空不是==null
+            while(!stack1.empty()){
+                stack2.push(stack1.pop());
+            }
+        }
+        return stack2.pop();
+    }
+}
