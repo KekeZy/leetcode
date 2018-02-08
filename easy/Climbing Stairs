@@ -5,6 +5,9 @@ Each time you can either climb 1 or 2 steps. In how many distinct ways can you c
 登n阶楼梯，每次只能上一层或者两层，共有多少种方法？
 1层有1种方法，2层有2种，登第三层时，可以从前一层上去或者从前两层直接上去。所以是个斐波那契数列问题。
 
+变种问题：
+矩阵覆盖：用2*1的小矩形横着或者竖着去覆盖更大的矩形。用n个2*1的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？
+
 class Solution {
     public int climbStairs(int n) {
         if(n==0||n==1||n==2){
