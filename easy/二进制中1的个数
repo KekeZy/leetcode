@@ -1,0 +1,32 @@
+输出一个整数的二进制表示中1的个数
+
+1、与n中的每一位做&运算，flag每次左移一位，后面补0
+public class Solution {
+    public int NumberOf1(int n) {
+        int count = 0;
+        int flag = 1;
+        while(flag!=0){  //超出int表示的位数后为0
+            if((n & flag)!=0){ //若n的当前位是0，与flag做&运算后全是0
+                count++;
+            }
+            flag = flag<<1;
+        }
+        return count;
+    }
+}
+
+2、最优思路（不容易想到）
+public class Solution {
+    public int NumberOf1(int n) {
+        int count = 0;
+        while(n!= 0){
+            count++;
+            n = n & (n - 1);  //n-1之后,n的二进制表示中最右边的一个1变为0，其余的0变为1，再与n做&运算之后，包括原本最右边的1及其之后全部变为0
+                              //即每次运算一次之后，最右边的一个1变为0.
+         }
+        return count;
+    }
+}
+
+3、
+ return Integer.toBinaryString(n).replaceAll("0","").length();
