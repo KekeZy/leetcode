@@ -1,0 +1,38 @@
+遍历获取链表长度，第二次获取倒数第k个结点
+1、public class Solution {
+    public ListNode FindKthToTail(ListNode head,int k) {
+        int count = 0;
+        ListNode old = head;
+        while(head!=null){
+            count++;
+            head = head.next;
+        }
+        if(count<k) return null;  //必须有的判断条件 
+        for(int i=1;i<(count-k+1);i++){
+            old = old.next;
+        }
+        return old;
+    }
+}
+
+
+2、两个链表，第一个链表先走k-1步到达第k个结点，然后两个链表同时走，第一个链表到达末尾时（n-k+1），第二个到达倒数第k个（）
+public class Solution {
+    public ListNode FindKthToTail(ListNode head,int k) {
+        if(head==null||k<=0) return null;   //特殊情况
+        ListNode old = head;
+        for(int i=1;i<k;i++){
+            if(head.next!=null){
+                head = head.next;
+            }else{
+                return null;
+            }
+        }
+        while(head.next!=null){
+            head = head.next;
+            old = old.next;
+        }
+        return old;
+ 
+    }
+}
