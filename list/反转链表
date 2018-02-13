@@ -1,0 +1,16 @@
+pre、next结点代表head结点的前后结点。
+
+public class Solution {
+    public ListNode ReverseList(ListNode head) {
+        if(head==null)  return null;
+        ListNode pre=null,next=null;
+        while(head!=null){
+            next = head.next;  //保存当前结点的next
+            head.next = pre;  //反转当前结点的指向
+            
+            pre = head;      // 结点的前一个结点和当前结点顺次后移一位
+            head = next ;
+        }
+        return pre;  //结束条件，当head为null时，head的前一个结点为最后一个结点。
+    }
+}
