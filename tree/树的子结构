@@ -13,10 +13,10 @@ public class Solution {
      
     }
     public boolean isSubTree(TreeNode root1,TreeNode root2){
-        if(root2==null) return true;
-        if(root1==null) return false;
+        if(root2==null) return true;  
+        if(root1==null) return false;   //root2不为空，root1为空
         if(root1.val==root2.val){
-            return isSubTree(root1.left,root2.left) && isSubTree(root1.right,root2.right);
+            return isSubTree(root1.left,root2.left) && isSubTree(root1.right,root2.right);   //判断左右子树
         }else{
             return false;
         }
