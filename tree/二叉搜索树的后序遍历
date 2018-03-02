@@ -25,3 +25,4 @@ public class Solution {
         return help(a,start,i-1) && help(a,i,end);
     }
 }
+
