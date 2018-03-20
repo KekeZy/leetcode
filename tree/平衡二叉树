@@ -1,0 +1,23 @@
+第一道完全自己写出来的，最后一行还是蒙的，很神奇。。。。。
+
+怎么想的呢，一开始不知道什么是平衡二叉树，查了之后发现是左右子树的深度不能超过1
+首先，肯定是递归。对于给定的结点，求出左右子树的深度，比较。再遍历当前结点的左右子树。
+public class Solution {
+    public boolean IsBalanced_Solution(TreeNode root) {
+        if(root == null) return true;   //最开始的true的出口没有想明白。就随手写了，然后提交，通过，超级激动（辣鸡）
+        int lcount = deep(root.left),rcount = deep(root.right);
+        if(Math.abs(lcount-rcount)>1){
+            return false;
+        }else{
+            return IsBalanced_Solution(root.left) && IsBalanced_Solution(root.right); 
+        }
+
+    } 
+    public int deep(TreeNode root){
+        if(root==null){
+            return 0;
+        }else{
+            return 1+Math.max(deep(root.left),deep(root.right));
+        }
+    }
+}
