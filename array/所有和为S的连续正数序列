@@ -1,0 +1,32 @@
+所有和为S的连续正数序列
+
+
+//(a1+an)*n/2=s  n=an-a1+1
+//(an+a1)*(an-a1+1)=2*s=k*l(k>l)
+//an=(k+l-1)/2  a1=(k-l+1)/2
+
+import java.util.ArrayList;
+public class Solution {
+    public ArrayList<ArrayList<Integer>> FindContinuousSequence(int sum) {
+        ArrayList<ArrayList<Integer>> res =new ArrayList();
+        if(sum<3) return res;
+        int s = (int)Math.sqrt(2*sum);    
+        for(int j=s;j>=2;j--){     //假设j是k*l中较小的那个数，则j最小为2，最大时，k的平方=2s
+           
+            if(2*sum%j==0){     //求出k
+                int k = 2*sum/j;
+                if((k%2==0 && j%2!=0) || (j%2==0 && k%2!=0) ){   //根据a1和an的公式，k，j必须一个奇数一个偶数
+                    int a1 = (k-j+1)/2;
+                    int an = (k+j-1)/2;
+                    ArrayList<Integer> list = new ArrayList();
+                    for(int i=a1;i<=an;i++){
+                        
+                        list.add(i);
+                    }
+                    res.add(list);
+                }
+            }
+        }
+        return res;
+    }
+}
