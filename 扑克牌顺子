@@ -1,0 +1,27 @@
+数组里0可以当任何值，5个数字是否可以组成顺子
+
+import java.util.Arrays;
+public class Solution {
+    public boolean isContinuous(int [] numbers) {
+        if(numbers.length<5) return false;
+        Arrays.sort(numbers);
+        int zero = 0;
+        int gap = 0;
+        for(int i=0;i<numbers.length-1;i++){
+            if(numbers[i]==0){
+                zero++;
+                continue;
+            }
+            if(numbers[i]==numbers[i+1]){
+                return false;
+            }
+            gap += numbers[i+1]-numbers[i]-1;
+        }
+        if(zero>=gap){
+            return true;
+        }
+        return false;
+        
+        
+    }
+}
