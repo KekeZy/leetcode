@@ -1,5 +1,8 @@
 数组里0可以当任何值，5个数字是否可以组成顺子
 
+1、不能有一样的两个数，
+2、0的个数大于间隔的和
+
 import java.util.Arrays;
 public class Solution {
     public boolean isContinuous(int [] numbers) {
@@ -15,7 +18,7 @@ public class Solution {
             if(numbers[i]==numbers[i+1]){
                 return false;
             }
-            gap += numbers[i+1]-numbers[i]-1;
+            gap += numbers[i+1]-numbers[i]-1;   //数之间的间隔
         }
         if(zero>=gap){
             return true;
