@@ -1,0 +1,19 @@
+将一个字符串转换成一个整数，要求不能使用字符串转换整数的库函数。 数值为0或者字符串不是一个合法的数值则返回0
+eg：+2147483647      2147483647
+    1a33             0
+ 
+ 数字字符比较直接用ASCLI码比较
+public class Solution {
+    public int StrToInt(String str) {
+        if(str.length()==0) return 0;
+        char[] c = str.toCharArray();
+        int res = 0;
+        int flag=1;
+        if(c[0]=='-') flag = -1;   //正负号
+        for(int i=(c[0]=='-' || c[0]=='+')?1:0;i<c.length;i++){
+            if(!(c[i]>'0'&&c[i]<'9')) return 0;    //是否数字
+            res = res*10+c[i]-'0';                  //字符直接加减
+        }
+        return res*flag;
+    }
+}
