@@ -1,0 +1,41 @@
+用两个堆各存一半的数，大顶堆放更小的数，小顶堆放更大的数，大顶堆的栈顶元素是更小的数里的最大的，是中位数
+
+import java.util.PriorityQueue;
+import java.util.Comparator;
+
+public class Solution {
+
+    private int count = 0;
+    private PriorityQueue<Integer> minHeap = new PriorityQueue<>();  //小顶堆大顶堆
+    private PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>(15, new Comparator<Integer>() {
+    @Override
+    public int compare(Integer o1, Integer o2) {
+        return o2 - o1;
+    }
+});
+    public void Insert(Integer num) {
+        if(count%2==0){
+            minHeap.offer(num);      //先入小顶堆，筛选出最小的放入大顶堆
+            int min = minHeap.poll();
+            maxHeap.offer(min);
+        }else{
+            maxHeap.offer(num);    //入大顶堆，筛选出最大的数放入小顶堆
+            int max = maxHeap.poll();
+            minHeap.offer(max);
+        }
+        count++;
+    }
+
+    public Double GetMedian() {
+        double res ;
+        if(count%2==0){
+            res = (minHeap.peek()+maxHeap.peek())/2.0;
+            return res;
+        }else{
+            res = maxHeap.peek();
+            return res;
+        }
+    }
+
+
+}
