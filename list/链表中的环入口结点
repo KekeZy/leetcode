@@ -1,0 +1,30 @@
+一个链表中包含环，请找出该链表的环的入口结点。
+
+两个指针遍历，第二个指针是第一个指针速度的2倍。两个指针第一次相遇之后
+2*(l+x) = l+n+x
+左边是第一个指针走的长度，右边第二个。
+l是环之前的长度，n是环的长度，x是环内相遇时，第一个指针走的长度，第二个指针此时走了环内一圈n+x的长度
+解出 n = l+x。然后第二个指针指向头结点，第一个指针走完一个环的长度还需要n-x的长度，即l。因此第二次相遇就是环的入口
+import java.util.ArrayList;
+public class Solution {
+
+    public ListNode EntryNodeOfLoop(ListNode pHead)
+    {
+        if(pHead==null || pHead.next==null) return null;
+        ListNode p1 = pHead;
+        ListNode p2 = pHead;
+        while(p1!=null){  //while真的强！
+            p1 = p1.next;
+            p2 = p2.next.next;
+            if(p1 == p2){
+                p2 = pHead;
+                while(p1 != p2){
+                    p1 = p1.next;
+                    p2 = p2.next;
+                }
+                return p1;
+            }
+        }
+        return null;
+    }
+}
