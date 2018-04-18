@@ -15,3 +15,29 @@ public class Solution {
         }
     }
 }
+
+//非递归
+import java.util.Stack;
+public class Solution {
+    public void Mirror(TreeNode root) {
+        if(root==null) return;
+        Stack<TreeNode> stack = new Stack();
+        stack.push(root);
+        while(!stack.isEmpty()){
+            TreeNode t = stack.pop();
+            if(t.left!=null ||t.right!=null){
+                TreeNode temp = t.left;
+                t.left = t.right;
+                t.right = temp;
+            }
+            if(t.left!=null){
+                stack.push(t.left);
+            }
+            if(t.right!=null){
+                stack.push(t.right);
+            }
+        }
+
+    }
+
+}
