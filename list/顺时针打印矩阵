@@ -13,7 +13,7 @@ public class Solution {
             if(top!=bottom)                                            //！只有一排时，
             for(int i =right-1;i>=left;--i) res.add(matrix[bottom][i]);
             if(left!=right)                                            //!只有一竖时
-            for(int i =bottom-1;i>top;--i) res.add(matrix[i][left]);
+            for(int i =bottom-1;i>top;--i) res.add(matrix[i][left]);   //这里是=号
             left++;right--;top++;bottom--;
         }
         return res;
