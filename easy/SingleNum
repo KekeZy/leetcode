@@ -1,0 +1,12 @@
+given a array,every number appear 2 times,only one num appear 1 time,find it!
+Can't use the extra memory and in the linear time
+
+public int singleNumber(int[] nums){
+      int res = 0;
+      for(int i=0;i<nums.length;i++){
+            res ^= nums[i];
+      }
+      return res;
+}
+
+ROX 
