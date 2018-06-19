@@ -22,15 +22,15 @@ class Solution {
         {
             if (node != null)
             {
-                nodeStack.Push(node);
-                depthStack.Push(depth);
+                nodeStack.push(node);
+                depthStack.push(depth);
                 node = node.left;
                 depth++;
             }
             else
             {
-                node = nodeStack.Pop();
-                depth = depthStack.Pop();
+                node = nodeStack.pop();
+                depth = depthStack.pop();
                 
                 if (depth > max) max = depth;
                 
