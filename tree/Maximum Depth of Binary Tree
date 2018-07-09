@@ -34,8 +34,8 @@ class Solution {
                 
                 if (depth > max) max = depth;
                 
-                node = node.right;
-                depth++;
+                node = node.right; 
+                depth++;  //这里每个node对应一个depth，node往下一层，depth++
             }
         }
         
