@@ -24,3 +24,26 @@ public int lengthOfLongestSubstring(String s) {
        return max;
 }
 整体思路就是找到重复字符的索引
+
+
+
+
+//自己超时的思路
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        char[] c = s.toCharArray();
+        HashMap<Character,Integer> map = new HashMap();
+        int max = 0,cur = 0;
+        for(int i=0;i<s.length;i++){       
+            if(map.get(c[i])==0){
+                map.put(c[i],1);
+                cur++;
+            }else{
+                if(cur>max) max = cur;
+                cur = 1;        
+            }
+        }
+        if(cur>max) max = cur;
+        return max;
+    }
+}
