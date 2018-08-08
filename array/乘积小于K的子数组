@@ -1,0 +1,23 @@
+给定一个正整数数组 nums。
+找出该数组内乘积小于 k 的连续的子数组的个数。
+
+#双指针+滑窗
+class Solution:
+    def numSubarrayProductLessThanK(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+       # nums.sort()
+        cnt,i = 0,0
+        s = 1
+        for j in range(len(nums)):
+            s *= nums[j]
+            while s >= k:
+                s /= nums[i]
+                i += 1
+            cnt += j-i+1
+        return cnt
+            
+            
