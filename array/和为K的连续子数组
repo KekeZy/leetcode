@@ -1,0 +1,20 @@
+给定一个整数数组和一个整数 k，你需要找到该数组中和为 k 的连续的子数组的个数。
+
+class Solution:
+    def subarraySum(self, nums, k):
+        """
+        :type nums: List[int]
+        :type k: int
+        :rtype: int
+        """
+        d = {0:1}  #这里.....单个数等于k的情况
+        cnt,s = 0,0
+        for i in range(len(nums)):
+            s += nums[i]
+            if d.get(s-k,0) != 0:
+                cnt += d.get(s-k,0)
+            d[s] = d.get(s,0)+1
+            
+
+        return cnt
+        
