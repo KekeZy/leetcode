@@ -1,0 +1,27 @@
+输入: [1,3,5,4,7]
+输出: 2
+解释: 有两个最长递增子序列，分别是 [1, 3, 4, 7] 和[1, 3, 5, 7]。
+
+class Solution:
+    def findNumberOfLIS(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        dp = [1]*len(nums)     #当前位置的递增序列长度
+        cnt = [1]*len(nums)  #当前位置的数的递增序列个数
+        res = 0
+        if len(nums) ==0:
+            return 0
+        for i in range(len(nums)):
+            for j in range(i):
+                if nums[j]<nums[i] and dp[j]+1 > dp[i]: #当前位置nums[i]是新的最大长度
+                    dp[i] = dp[j]+1
+                    cnt[i] = cnt[j]
+                elif nums[j]<nums[i] and dp[j]+1 == dp[i]:  # 最大长度的dp[i]已经出现过了，cnt更新应该加上出现过的次数cnt[j]
+                    cnt[i] += cnt[j] 
+        m = max(dp)
+        for i in range(len(dp)):
+            if dp[i] == m:
+                res += cnt[i]
+        return res
