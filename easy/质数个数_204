@@ -1,0 +1,23 @@
+统计所有小于非负整数 n 的质数的数量
+
+
+class Solution(object):
+    def countPrimes(self, n):
+        """
+        :type n: int
+        :rtype: int
+        """
+        l = [True]*n  #长度为n的list存储是否为质数，
+        for i in range(2,int(n**0.5)+1):  #从2开始到根号n，这里注意+1！！！
+            if l[i]:  #为True时
+                j = i   
+                while i*j<n:  # i的整数倍都不是质数
+                    l[j*i] = False
+                    j = j+1
+        res = 0
+        for i in l[2:]:  #从2开始统计质数的个数
+            if i:
+                res += 1
+        return res
+        
+        
